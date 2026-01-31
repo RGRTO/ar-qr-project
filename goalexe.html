@@ -50,24 +50,36 @@
       </a-marker>
 
       <!-- CAMERA + CLICK SUPPORT -->
-      <a-entity
-        camera
-        cursor="rayOrigin: mouse"
-        raycaster="objects: .clickable">
-      </a-entity>
+<a-entity
+  camera
+  cursor="fuse: false; rayOrigin: mouse"
+  raycaster="objects: .clickable; far: 20">
+</a-entity>
 
     </a-scene>
 
     <!-- CLICK HANDLER -->
-    <script>
-      window.addEventListener("load", () => {
-        const model = document.querySelector("#myModel");
+<script>
+  window.addEventListener("load", () => {
+    const model = document.querySelector("#myModel");
 
-        model.addEventListener("click", () => {
-          window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLSfgLZr0uIQ81sPfP9EHR4S_IZmo_wcH8OsMMHhN9E9OBW8CPQ/viewform?usp=publish-editor";
-        });
-      });
-    </script>
+    const goToForm = () => {
+      window.location.href =
+        "https://docs.google.com/forms/d/e/1FAIpQLSfgLZr0uIQ81sPfP9EHR4S_IZmo_wcH8OsMMHhN9E9OBW8CPQ/viewform?usp=publish-editor";
+    };
+
+    // Desktop
+    model.addEventListener("mousedown", goToForm);
+
+    // Mobile
+    model.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      goToForm();
+    });
+  });
+</script>
+
   </body>
 </html>
+
 

@@ -27,7 +27,7 @@
     >
 
       <!-- QR PATTERN MARKER -->
-      <a-marker type="pattern" url="pattern-goal.patt">
+      <a-marker id="qrMarker"type="pattern" url="pattern-goal.patt">
 
         <!-- Example model (Trex) -->
         <a-entity
@@ -61,26 +61,31 @@
     <!-- CLICK HANDLER -->
 <script>
   window.addEventListener("load", () => {
-    const model = document.querySelector("#myModel");
+    const marker = document.querySelector("#qrMarker");
+    let markerVisible = false;
 
-    const goToForm = () => {
-      window.location.href =
-        "https://docs.google.com/forms/d/e/1FAIpQLSfgLZr0uIQ81sPfP9EHR4S_IZmo_wcH8OsMMHhN9E9OBW8CPQ/viewform?usp=publish-editor";
-    };
+    marker.addEventListener("markerFound", () => {
+      markerVisible = true;
+    });
 
-    // Desktop
-    model.addEventListener("mousedown", goToForm);
+    marker.addEventListener("markerLost", () => {
+      markerVisible = false;
+    });
 
-    // Mobile
-    model.addEventListener("touchstart", (e) => {
-      e.preventDefault();
-      goToForm();
+    // Screen tap handler (works on ALL phones)
+    document.body.addEventListener("touchstart", () => {
+      if (markerVisible) {
+        window.location.href =
+          "https://docs.google.com/forms/d/e/1FAIpQLSfgLZr0uIQ81sPfP9EHR4S_IZmo_wcH8OsMMHhN9E9OBW8CPQ/viewform";
+      }
     });
   });
 </script>
 
+
   </body>
 </html>
+
 
 
 

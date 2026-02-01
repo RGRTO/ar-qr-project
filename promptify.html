@@ -28,29 +28,31 @@
 
     <!-- MARKER (REAL SIZE: 8 CM) -->
     <a-marker
-      id="qrMarker"
-      type="pattern"
-      url="pattern-prompt.patt"
-      size="0.08"
-      smooth="true"
-      smoothCount="10"
-      smoothTolerance="0.01"
-      smoothThreshold="2">
-
-      <!-- MODEL CONTAINER (RELATIVE TO MARKER) -->
-
-        <!-- MODEL -->
-        <a-entity
-          id="myModel"
-          class="clickable"
-          gltf-model="starwars.glb"
-          scale="0.02 0.02 0.02"
-          position="0 0.04 0"
-          animation-mixer>
-        </a-entity>
-
+  id="qrMarker"
+  type="pattern"
+  url="pattern-prompt.patt"
+  size="0.08"
+  smooth="true"
+  smoothCount="10"
+  smoothTolerance="0.01"
+  smoothThreshold="2">
+  
+  <!-- Add back the container with rotation -->
+  <a-entity
+    id="modelRoot"
+    rotation="-90 0 0"
+    scale="1 1 1">
     
-    </a-marker>
+    <a-entity
+      id="myModel"
+      class="clickable"
+      gltf-model="starwars.glb"
+      scale="0.01 0.01 0.01"
+      position="0 0 0"
+      animation-mixer>
+    </a-entity>
+  </a-entity>
+</a-marker>
 
     <!-- CAMERA -->
     <a-entity
@@ -79,6 +81,7 @@
   </script>
 </body>
 </html>
+
 
 
 
